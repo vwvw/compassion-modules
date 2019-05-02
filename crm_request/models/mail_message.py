@@ -46,3 +46,12 @@ class MailMessage(models.Model):
 
         return header1 + header2 + header3 + br + str(
             email_from) + br + subject + br + mail_date + 2*br + body
+
+    def name_get(self):
+        res = []
+        for record in self:
+            res.append((record.id,
+                        record.subject.strip() if record.subject != ''
+                        else '(no subject)'))
+
+        return res
