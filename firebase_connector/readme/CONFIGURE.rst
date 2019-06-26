@@ -1,3 +1,3 @@
 Make sure the following variables are defined in your odoo.conf file:
 
-- `firebase_api_key`: Your Firebase API key
+- `google_application_credentials`: The path to your json file containing your Google application credentials

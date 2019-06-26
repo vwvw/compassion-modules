@@ -38,7 +38,7 @@ class GetPartnerMessage(models.Model):
         """
         firebase_id = json_data.get('firebaseId')
         partner_id = json_data.get('SupporterId'),
-        reg = self.env['firebase.registration'].search([
+        reg = self.env['firebase.registration'].sudo().search([
             ('registration_id', '=', firebase_id)])
 
         if len(reg) == 0:
@@ -52,8 +52,10 @@ class GetPartnerMessage(models.Model):
                 'firebaseId': firebase_id,
             })
         else:
-            reg.receive_child_notification = json_data.get('appchild') == '1'
-            reg.receive_general_notification = json_data.get('appinfo') == '1'
+            app_child = json_data.get('appchild')
+            app_info = json_data.get('appinfo')
+            reg.receive_child_notification = app_child == '1' or app_child == 1
+            reg.receive_general_notification = app_info == '1' or app_info == 1
 
         return {
             "UpdateRecordingContactResult":
