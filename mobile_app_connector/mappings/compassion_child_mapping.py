@@ -62,7 +62,6 @@ class MobileChildMapping(OnrampMapping):
                 if value:
                     connect_data[key] = datetime.datetime.strptime(
                         value, '%Y-%m-%d').strftime('%d/%m/%Y %H:%M:%S')
-            if key == "SupporterGroupId":
-                if value:
-                    connect_data[key] = int(value)
+            if key in ["SupporterId", "SupporterGroupId"]:
+                connect_data[key] = int(value)
         return connect_data
