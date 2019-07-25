@@ -28,5 +28,6 @@ from . import request
 from . import mobile_feedback
 from . import mobile_writing
 from . import firebase_registration
+from . import firebase_notification
 from . import privacy_statement
 from . import frequently_asked_questions
